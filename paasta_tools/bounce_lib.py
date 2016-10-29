@@ -100,7 +100,9 @@ def bounce_lock(name):
 def bounce_lock_zookeeper(name):
     """Acquire a bounce lock in zookeeper for the name given. The name should
     generally be the service namespace being bounced.
+
     This is a contextmanager. Please use it via 'with bounce_lock(name):'.
+
     :param name: The lock name to acquire"""
     zk = KazooClient(hosts=load_system_paasta_config().get_zk_hosts(), timeout=ZK_LOCK_CONNECT_TIMEOUT_S)
     zk.start()
