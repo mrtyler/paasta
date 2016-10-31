@@ -113,9 +113,11 @@ def generate_pipeline(service, soa_dir):
         owner = re.sub('@.*', '', email_address)
     cmds = [
         'fab_repo setup_jenkins:services/%s,'
-        'profile=paasta,job_disabled=False,owner=%s,repo=%s' % (service, owner, repo),
+        'profile=paasta,job_disabled=False,owner=%s,repo=%s,jenkins_host=http://localhost:8080' % (
+            service, owner, repo),
         'fab_repo setup_jenkins:services/%s,'
-        'profile=paasta_boilerplate,owner=%s,repo=%s' % (service, owner, repo),
+        'profile=paasta_boilerplate,owner=%s,repo=%s,jenkins_host=http://localhost:8080' % (
+            service, owner, repo),
     ]
     print_warning()
     for cmd in cmds:
